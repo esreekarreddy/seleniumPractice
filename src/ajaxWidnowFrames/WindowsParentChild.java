@@ -1,11 +1,14 @@
 package ajaxWidnowFrames;
 
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WindowsParentChild {
 
@@ -13,6 +16,7 @@ public class WindowsParentChild {
 		
 		System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
 		WebDriver driver = new ChromeDriver();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		driver.manage().window().maximize();
 		
 		driver.get("https://rahulshettyacademy.com/loginpagePractise/");
@@ -24,6 +28,7 @@ public class WindowsParentChild {
 		String parentWindow = window.next();
 		String childWindow = window.next();
 		driver.switchTo().window(childWindow);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".im-para.red")));
 		String uname = driver.findElement(By.cssSelector(".im-para.red")).getText().split("at")[1].split("with")[0].trim();
 		System.out.println(uname);
 		driver.switchTo().window(parentWindow);
