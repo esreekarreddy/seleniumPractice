@@ -24,8 +24,6 @@ public class Screenshot {
 		File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(src, new File("/Users/sreekar/Downloads/shot.jpg"));
 		
-		
-	
 		///Users/sreekar/Downloads
 		Thread.sleep(2000);
 		driver.close();
